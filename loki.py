@@ -39,26 +39,14 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 # Arg parser.
 parser = argparse.ArgumentParser()
 ap = parser.add_mutually_exclusive_group()
-ap.add_argument('-discovery',   help='Filling soon.\n', action="store_true")
-ap.add_argument('-encrypt',     help='Filling soon.',   action="store_true")
-ap.add_argument('-decrypt',     help='Filling soon.',   action="store_true")
-ap.add_argument('-vault',       help='Filling soon.',   action="store_true")
-ap.add_argument('-keygen',      help='Filling soon.',   action="store_true")
-ap.add_argument('-config',      help='Filling soon.',   action="store_true")
+ap.add_argument('-encrypt',     help='Encrypt specified directory.',    action="store_true")
+ap.add_argument('-decrypt',     help='Decrypt specified directory.',    action="store_true")
+ap.add_argument('-vault',       help='Access the Vault Control Panel.', action="store_true")
+ap.add_argument('-keygen',      help='Generate a key.',                 action="store_true")
+ap.add_argument('-config',      help='Configure Loki.',                 action="store_true")
 args = vars(parser.parse_args())
 
 # Args.
-if args['discovery']: # Runs the discovery program.
-    while True:
-        try:
-            os.chdir(os.path.expanduser("~"))
-            discovery.discovery() # --
-            os._exit(0) # Attempts to exit.
-        except:
-            print(f"{print_prompt} {print_failed}: Discovery failed to run here!\n")
-            print(f"[!] Manual cleanup may be necessary now to avoid exposure.")
-            os._exit(0) # Attempts to exit.
-
 if args['encrypt']: # Runs the encrypt program.
     while True:
         try:
@@ -86,7 +74,7 @@ if args['vault']: # Runs the keygen program.
             vault.vault() # --
             os._exit(0) # Attempts to exit.
         except:
-            print(f"{print_prompt} {print_failed}: vault failed to run here!\n")
+            print(f"{print_prompt} {print_failed}: Vault failed to run here!\n")
             os._exit(0) # Attempts to exit.
 
 if args['keygen']: # Runs the keygen program.
@@ -106,7 +94,7 @@ if args['config']: # Runs the keygen program.
             config.config() # --
             os._exit(0) # Attempts to exit.
         except:
-            print(f"{print_prompt} {print_failed}: config failed to run here!\n")
+            print(f"{print_prompt} {print_failed}: Config failed to run here!\n")
             os._exit(0) # Attempts to exit.
 
 # Program.

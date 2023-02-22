@@ -5,7 +5,6 @@ import os
 from colorama import Fore
 
 # Modules.
-import src.modules.discovery as discovery
 import src.modules.encrypt as encrypt
 import src.modules.decrypt as decrypt
 import src.modules.keygen as keygen
@@ -45,27 +44,23 @@ def main_script():
             print(f"{print_prompt}  {Fore.GREEN}•{Fore.WHITE} Config        {Fore.WHITE}(Config)")
             option = input(f"{print_command}")
 
-            if option == "discovery" or option == "Discovery": # Runs the discovery program.
-                discovery.discovery() # --
-                os._exit(0) # Attempts to exit.
-
-            if option == "encrypt" or option == "Encrypt": # Runs the encrypt program.
+            if option == "encrypt".lower(): # Runs the encrypt program.
                 encrypt.encrypt() # --
                 os._exit(0) # Attempts to exit.
 
-            if option == "decrypt" or option == "Decrypt": # Runs the decrypt program.
+            if option == "decrypt".lower(): # Runs the decrypt program.
                 decrypt.decrypt() # --
                 os._exit(0) # Attempts to exit.
 
-            if option == "keygen" or option == "Keygen": # Runs the keygen program.
+            if option == "keygen".lower(): # Runs the keygen program.
                 keygen.keygen() # --
                 os._exit(0) # Attempts to exit.
 
-            if option == "vault" or option == "Vault": # Runs the keygen program.
+            if option == "vault".lower(): # Runs the keygen program.
                 vault.vault() # --
                 os._exit(0) # Attempts to exit.
 
-            if option == "config" or option == "Config": # Runs the keygen program.
+            if option == "config".lower(): # Runs the keygen program.
                 config.config() # --
                 os._exit(0) # Attempts to exit.
 
