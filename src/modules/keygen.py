@@ -30,22 +30,31 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 def keygen():
     try:
         os.chdir(os.path.expanduser("~"))
+        with open(".config/loki_config.json") as f:
+            loki_config = json.load(f)
+            install_dir = loki_config["loki_dir"]
+            vault_dir = loki_config["vault_location"]
+
+        os.chdir(os.path.expanduser("~"))
         print(f"\n{print_question} Do you want to back up your current key? [Y/n]")
         option = input(f"{print_command}")
-        key_path = './var/pipes/loki.key'
+        key_path = f'{install_dir}/var/pipes/loki.key'
         option = option.lower()
 
         # Backup key
         if option == 'y':
-            with open(key_path, 'r') as loki_key:
-                print(f'\n{print_prompt} Pevious key: {loki_key.read()}')
-            os.system(f'cp {key_path} {key_path}.bk')
+            os.chdir(os.path.expanduser("~"))
+            with open(f"loki/var/pipes/loki.key",'r') as loki_key:
+                print(f"\n{print_prompt} Previous key: {loki_key.read()}")
+                os.system(f'cp {install_dir}/var/pipes/loki.key {install_dir}/var/pipes/loki.key.bk')
 
-        # Generate new key
-        with open(key_path, 'wb') as loki_key:
-            key = Fernet.generate_key()
-            loki_key.write(key)
-            print(f'\n{print_alert} New key: {key.decode("utf8")}\n')
+            gen_key = "loki.key"
+            # Generate new key
+            with open(gen_key, 'wb') as loki_key:
+                key = Fernet.generate_key()
+                loki_key.write(key)
+                print(f'\n{print_alert} New key: {key.decode("utf8")}\n')
+                os.system(f"mv ./loki.key {install_dir}/var/pipes/loki.key")
 
         if option == 'n':
             print(f'\n{print_exited} {print_notice} {print_successfully}\n')
