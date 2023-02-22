@@ -1,8 +1,9 @@
 # Imports.
-import sys # System stuff.
+import sys
+import json
 import time
-import os # Operating System functions.
-from colorama import Fore # For text colour.
+import os
+from colorama import Fore
 
 # Pre-run.
 os.system("clear")
@@ -27,14 +28,20 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 # Program.
 def encrypt():
         try:
-            print(f"\n{print_question} What directory would you like to encrypt?")
+            os.chdir(os.path.expanduser("~"))
+            # Loki Config.
+            with open('.config/loki_config.json') as f:
+                loki_config = json.load(f)
+                install_dir = loki_config["loki_dir"]
+                vault_dir = loki_config["vault_location"]
+
+            print(f"\n{print_question} What directory would you like to encrypt?\n")
             dir_encrypt = input(f"{print_command}")
-            os.system(f"\ncp ./src/modules/loki_encryptor.py {dir_encrypt}")
-            os.system(f"cp ./var/pipes/loki.key {dir_encrypt}")
-            os.chdir(f"{dir_encrypt}")
-            os.system(f"cd {dir_encrypt}")
-            os.system(f"python3 {dir_encrypt}/loki_encryptor.py")
-            os.system("rm loki_encryptor.py")
+            os.system(f"\ncp {install_dir}/src/modules/encryptor.py {dir_encrypt}")
+            os.system(f"cp {install_dir}/var/pipes/loki.key {dir_encrypt}")
+            os.chdir(os.path.expanduser(f"{dir_encrypt}"))
+            os.system(f"python3 {dir_encrypt}/encryptor.py")
+            os.system("rm encryptor.py")
             os.system("rm loki.key")
             print(f"\n{print_exited} {print_notice} {print_successfully}\n")
 

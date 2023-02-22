@@ -4,7 +4,7 @@ import os # Operating System functions.
 from colorama import Fore # For text colour.
 import random # For tagline.
 
-version = ("3.1.2") # Major.Minor.Rev/Build
+version = ("3.5.4") # Major.Minor.Rev/Build
 motd = (f"{Fore.YELLOW}The god of mischief{Fore.WHITE}") # Always use 20 char max.
 tag = ['              (Did you know, Loki can be used for host-defensive?)', '              (Loki is the world eaters father Pagan and Norse folklore!)'] # Use spaces to centre the tag to the divider bar.
 

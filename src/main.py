@@ -1,8 +1,8 @@
 # Imports.
 from asyncio import subprocess
-import sys # System stuff.
-import os # Operating System functions.
-from colorama import Fore # For text colour.
+import sys
+import os
+from colorama import Fore
 
 # Modules.
 import src.modules.discovery as discovery
@@ -35,8 +35,9 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 # Program.
 def main_script():
         try:
+            owd = os.getcwd() # Gets source dir.
+            os.chdir(owd) # Changes back to source dir.
             print(f"\n    -=-=-=-=-COMMANDS-=-=-=-=-\n")
-            print(f"{print_prompt}  {Fore.GREEN}•{Fore.WHITE} Discovery     {Fore.WHITE}(Files)")
             print(f"{print_prompt}  {Fore.GREEN}•{Fore.WHITE} Encrypt       {Fore.WHITE}(Secure)")
             print(f"{print_prompt}  {Fore.GREEN}•{Fore.WHITE} Decrypt       {Fore.WHITE}(Decrypt)")
             print(f"{print_prompt}  {Fore.YELLOW}•{Fore.WHITE} Vault         {Fore.WHITE}(Access vault)")

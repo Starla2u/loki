@@ -26,9 +26,16 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 # Program.
 def discovery():
         try: # Launches the probe.
+            os.chdir(os.path.expanduser("~"))
+            # Loki Config.
+            with open('.config/loki_config.json') as f:
+                loki_config = json.load(f)
+                install_dir = loki_config["loki_dir"]
+                vault_dir = loki_config["vault_location"]
+
             print(f"\n{print_question} What directory would you like to probe?")
             dir_probe = input(f"{print_command}")
-            os.system(f"cp src/modules/loki_discovery_probe.py {dir_probe}")
+            os.system(f"cp {install_dir}/src/modules/loki_discovery_probe.py {dir_probe}")
             os.chdir(f"{dir_probe}")
             os.system(f"cd {dir_probe}")
             os.system(f"python3 {dir_probe}/loki_discovery_probe.py")

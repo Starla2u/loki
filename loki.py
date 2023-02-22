@@ -51,6 +51,7 @@ args = vars(parser.parse_args())
 if args['discovery']: # Runs the discovery program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             discovery.discovery() # --
             os._exit(0) # Attempts to exit.
         except:
@@ -61,6 +62,7 @@ if args['discovery']: # Runs the discovery program.
 if args['encrypt']: # Runs the encrypt program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             encrypt.encrypt() # --
             os._exit(0) # Attempts to exit.
         except:
@@ -70,6 +72,7 @@ if args['encrypt']: # Runs the encrypt program.
 if args['decrypt']: # Runs the decrypt program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             decrypt.decrypt() # --
             os._exit(0) # Attempts to exit.
         except:
@@ -79,15 +82,17 @@ if args['decrypt']: # Runs the decrypt program.
 if args['vault']: # Runs the keygen program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             vault.vault() # --
             os._exit(0) # Attempts to exit.
         except:
-            print(f"{print_prompt} {print_failed}: Keygen failed to run here!\n")
+            print(f"{print_prompt} {print_failed}: vault failed to run here!\n")
             os._exit(0) # Attempts to exit.
 
 if args['keygen']: # Runs the keygen program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             keygen.keygen() # --
             os._exit(0) # Attempts to exit.
         except:
@@ -97,10 +102,11 @@ if args['keygen']: # Runs the keygen program.
 if args['config']: # Runs the keygen program.
     while True:
         try:
+            os.chdir(os.path.expanduser("~"))
             config.config() # --
             os._exit(0) # Attempts to exit.
         except:
-            print(f"{print_prompt} {print_failed}: Keygen failed to run here!\n")
+            print(f"{print_prompt} {print_failed}: config failed to run here!\n")
             os._exit(0) # Attempts to exit.
 
 # Program.

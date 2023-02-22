@@ -1,9 +1,10 @@
 # Imports.
-import sys # System stuff.
-import os # Operating System functions.
-from colorama import Fore # For text colour.
+import sys
+import os
+from colorama import Fore
 from pathlib import Path
 from cryptography.fernet import Fernet
+import json
 
 # Pre-run.
 #os.system("clear")
@@ -28,6 +29,7 @@ print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a comma
 # Program.
 def keygen():
     try:
+        os.chdir(os.path.expanduser("~"))
         print(f"\n{print_question} Do you want to back up your current key? [Y/n]")
         option = input(f"{print_command}")
         key_path = './var/pipes/loki.key'
