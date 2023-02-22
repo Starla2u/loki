@@ -1,3 +1,8 @@
+# Threading.
+from multiprocessing.dummy import Pool as ThreadPool
+# Makes the little workers!
+threads = ThreadPool(8)
+
 # Imports.
 import sys # System stuff.
 import os # Operating System functions.
@@ -35,6 +40,10 @@ print_alert =  (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}!{Fore.WHITE}]") # Alert output
 print_exited = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}EXITED{Fore.WHITE}]") # Execited output.
 print_disconnected = (f"{Fore.WHITE}[{Fore.LIGHTRED_EX}DISCONNECTED{Fore.WHITE}]") # Disconnected output.
 print_command = (f"\n[{Fore.YELLOW}>_{Fore.WHITE}]: ") # Always asks for a command on a new line.
+
+# Benchmark, uncomment lines 45-46 and 116-117 if you want to benchmark.
+#from time import perf_counter
+#start = perf_counter()
 
 # Arg parser.
 parser = argparse.ArgumentParser()
@@ -102,6 +111,10 @@ if __name__ == '__main__':
     try:
         # Uncomment line 88 for banner.
         #banner.banner() # Shows the banner.
+        threads.close()
+        threads.join()
+#        end = perf_counter()
+#        print(f"Time: {end - start} seconds")
         main.main_script() # Runs the primary program.
     except KeyboardInterrupt:
         print(f"\n{print_exited} {print_notice} {print_successfully}\n") # States the script ended.
